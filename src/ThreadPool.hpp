@@ -12,15 +12,7 @@
 class ThreadPool final
 {
 public:
-    explicit ThreadPool(const std::size_t number_of_workers)
-    {
-        workers_.reserve(number_of_workers);
-        for (std::size_t worker_id = 0; worker_id < number_of_workers; ++worker_id)
-        {
-            workers_.emplace_back(tasks_, is_stop_requested_);
-            workers_[worker_id].start_working();
-        }
-    }
+    explicit ThreadPool(const std::size_t number_of_workers);
 
     template<typename Func, typename... Args>
     [[nodiscard]] auto add_task(Func&& func, Args&&... args) -> std::future<decltype(func(args...))>
@@ -33,12 +25,7 @@ public:
         return task_ptr->get_future();
     }
 
-    void shutdown()
-    {
-        is_stop_requested_ = true;
-        tasks_.unblock_waiters_and_invalidate_queue();
-        workers_.clear();
-    }
+    void shutdown();
 
 private:
     using Task = std::function<void()>;

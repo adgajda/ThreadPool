@@ -5,6 +5,7 @@ Worker::Worker(ThreadSafeQueue<Task>& tasks, std::atomic_bool& is_stop_requested
   : tasks_{ tasks }, is_stop_requested_{ is_stop_requested }
 {
 }
+
 void Worker::start_working()
 {
     thread_ = std::jthread(&Worker::run, this);
