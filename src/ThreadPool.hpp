@@ -31,5 +31,4 @@ private:
     using Task = std::function<void()>;
     std::vector<Worker> workers_;
     ThreadSafeQueue<Task> tasks_;
-    std::atomic_bool is_stop_requested_ = false;
 };
