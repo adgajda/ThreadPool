@@ -1,6 +1,6 @@
 #pragma once
-#include "ThreadSafeQueue.hpp"
-#include "Worker.hpp"
+#include "internal/ThreadSafeQueue.hpp"
+#include "internal/Worker.hpp"
 #include <atomic>
 #include <cstddef>
 #include <functional>
