@@ -27,4 +27,4 @@ set(GCC_WARNINGS
 
 add_compile_options(-Werror ${GCC_WARNINGS} -O2)
 
-add_executable(example example.cpp src/Worker.cpp src/ThreadPool.cpp)
+add_executable(example example.cpp)
