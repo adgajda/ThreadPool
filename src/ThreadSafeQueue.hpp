@@ -33,8 +33,10 @@ public:
 
     void unblock_waiters_and_invalidate_queue()
     {
-        const std::lock_guard lock(mutex_);
-        is_unblock_requested_ = true;
+        {
+            const std::lock_guard lock(mutex_);
+            is_unblock_requested_ = true;
+        }
         condition_variable_.notify_all();
     }
 
