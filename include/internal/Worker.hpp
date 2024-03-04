@@ -19,8 +19,7 @@ public:
 private:
     void run()
     {
-        std::optional<Task> task;
-        while (task = tasks_.try_pop_with_wait())
+        while (const auto task = tasks_.try_pop_with_wait())
         {
             std::invoke(task.value());
         }
